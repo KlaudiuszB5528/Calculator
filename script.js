@@ -54,7 +54,7 @@ operators.forEach((operator) => {
 });
 
 equalSign.addEventListener("click", (e) => {
-  if (previous.textContent == "") return;
+  if (previous.textContent == "" || current.textContent == "") return;
   previous.textContent = "";
   current.textContent = `${operation(prevValue, action, currentValue)}`;
   prevValue = parseFloat(current.textContent);
