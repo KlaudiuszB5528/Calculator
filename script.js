@@ -29,13 +29,20 @@ buttons.forEach((button) => {
 
 operators.forEach((operator) => {
   operator.addEventListener("click", (e) => {
+    if (current.textContent == "" && previous.textContent != "") {
+      previous.textContent = `${previous.textContent.slice(0, -1)} ${
+        e.target.textContent
+      }`;
+      action = e.target.textContent;
+    }
+
     if (current.textContent == "") return;
+
     if (previous.textContent == "") {
       prevValue = parseFloat(current.textContent);
       action = e.target.textContent;
       previous.textContent = `${current.textContent} ${e.target.textContent}`;
     } else {
-      if (current.textContent == "") return;
       prevValue = parseFloat(previous.textContent.slice(0, -1));
       previous.textContent = `${operation(prevValue, action, currentValue)} ${
         e.target.textContent
