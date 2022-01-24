@@ -55,7 +55,8 @@ equalSign.addEventListener("click", (e) => {
 
 backspace.addEventListener("click", (e) => {
   current.textContent = current.textContent.slice(0, -1);
-  if (current.textContent == 0) currentValue = "";
+  if (current.textContent.length == 0) currentValue = "";
+  currentValue = parseFloat(current.textContent);
 });
 
 clear.addEventListener("click", () => {
