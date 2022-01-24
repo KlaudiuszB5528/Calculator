@@ -116,3 +116,16 @@ footer {
 .fa-github:hover {
   transform: rotateY(1turn) scale(1.2);
 }
+
+@media (max-width: 400px) {
+  body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+  }
+  .container {
+    height: 400px;
+    width: 300px;
+  }
+}
