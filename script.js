@@ -21,6 +21,7 @@ buttons.forEach((button) => {
       current.textContent[1] != "."
     )
       return;
+    if (current.textContent == 0) current.textContent = e.target.textContent;
     else current.textContent += e.target.textContent;
     currentValue = parseFloat(current.textContent);
   });
