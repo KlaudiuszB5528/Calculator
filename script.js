@@ -13,15 +13,16 @@ let action = undefined;
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     if (current.textContent.includes("C")) clearDisplay();
-    if (e.target.textContent === "." && current.textContent.includes("."))
+    if (e.target.textContent == "." && current.textContent.includes("."))
       return;
-    else if (
-      e.target.textContent === "0" &&
-      current.textContent[0] == "0" &&
-      current.textContent[1] != "."
+    if (
+      e.target.textContent == "0" &&
+      current.textContent.charAt(0) == "0" &&
+      current.textContent.charAt(1) != "."
     )
       return;
-    if (current.textContent == 0) current.textContent = e.target.textContent;
+    if (current.textContent == "0" && e.target.textContent != ".")
+      current.textContent = e.target.textContent;
     else current.textContent += e.target.textContent;
     currentValue = parseFloat(current.textContent);
   });
