@@ -125,7 +125,14 @@ footer {
     align-content: center;
   }
   .container {
-    height: 400px;
-    width: 300px;
+    height: 430px;
+    width: 310px;
+  }
+  #current {
+    font-size: 1rem;
+  }
+
+  #previous {
+    font-size: 0.8rem;
   }
 }
