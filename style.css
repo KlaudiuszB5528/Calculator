@@ -66,6 +66,7 @@ button {
 button:hover,
 button:active {
   background-color: var(--color2);
+  cursor: pointer;
 }
 
 #current {
