@@ -73,7 +73,7 @@ clear.addEventListener("click", () => {
 
 plusminus.addEventListener("click", (e) => {
   if (current.textContent == "") return;
-  current.textContent = ~parseFloat(current.textContent) + 1;
+  current.textContent = -current.textContent;
   currentValue = parseFloat(current.textContent);
 });
 
