@@ -56,14 +56,15 @@ operators.forEach((operator) => {
 
 equalSign.addEventListener("click", (e) => {
   if (previous.textContent == "" || current.textContent == "") return;
+  prevValue = parseFloat(previous.textContent.slice(0, -1));
+  currentValue = parseFloat(current.textContent);
   previous.textContent = "";
   current.textContent = `${operation(prevValue, action, currentValue)}`;
-  prevValue = parseFloat(current.textContent);
 });
 
 backspace.addEventListener("click", (e) => {
   deleteOne();
-  if (current.textContent.length == 0) currentValue = "";
+  if (current.textContent.length == 0) return;
   currentValue = parseFloat(current.textContent);
 });
 
@@ -94,9 +95,10 @@ const handleKeyboardInput = (e) => {
   }
   if (e.key === "=" || e.key === "Enter") {
     if (previous.textContent == "" || current.textContent == "") return;
+    prevValue = parseFloat(previous.textContent.slice(0, -1));
+    currentValue = parseFloat(current.textContent);
     previous.textContent = "";
     current.textContent = `${operation(prevValue, action, currentValue)}`;
-    prevValue = parseFloat(current.textContent);
   }
   if (e.key === "Backspace") deleteOne();
   if (e.key === "Escape") clearDisplay();
