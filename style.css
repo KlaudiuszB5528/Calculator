@@ -49,8 +49,7 @@ body {
   display: flex;
   flex-flow: row wrap;
   grid-column: span 4;
-  margin: 0.2rem;
-  padding: 0.5rem;
+  padding: 0.4rem;
   background-color: var(--color7);
   color: var(--color2);
   font-size: 1.8rem;
@@ -63,7 +62,6 @@ button {
   color: var(--color1);
   font-size: 1.2em;
   border-radius: 4%;
-  margin: 0.2rem;
 }
 button:hover,
 button:active {
@@ -103,13 +101,12 @@ button:active {
 }
 
 footer {
-  flex-basis: 100%;
   text-align: center;
 }
 
 .fa-github {
   color: black;
-  font-size: 22px;
+  font-size: 1.5rem;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -118,15 +115,15 @@ footer {
 }
 
 @media (max-width: 400px) {
-  body {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-content: center;
+  footer {
+    font-size: 0.8rem;
   }
   .container {
     height: 430px;
     width: 310px;
+  }
+  button {
+    font-size: 0.9rem;
   }
   #current {
     font-size: 1rem;
