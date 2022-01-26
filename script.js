@@ -6,60 +6,25 @@ const equalSign = document.getElementById("equal-sign");
 const clear = document.getElementById("clear");
 const backspace = document.getElementById("backspace");
 const plusminus = document.getElementById("plusminus");
+
 let currentValue = "";
 let prevValue = "";
 let action = undefined;
 
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    if (current.textContent.includes("C")) clearDisplay();
-    if (e.target.textContent == "." && current.textContent.includes("."))
-      return;
-    if (
-      e.target.textContent == "0" &&
-      current.textContent.charAt(0) == "0" &&
-      current.textContent.charAt(1) != "."
-    )
-      return;
-    if (current.textContent == "0" && e.target.textContent != ".")
-      current.textContent = e.target.textContent;
-    else current.textContent += e.target.textContent;
-    currentValue = parseFloat(current.textContent);
+    handleButton(e, "textContext");
   });
 });
 
 operators.forEach((operator) => {
   operator.addEventListener("click", (e) => {
-    if (current.textContent == "" && previous.textContent != "") {
-      previous.textContent = `${previous.textContent.slice(0, -1)} ${
-        e.target.textContent
-      }`;
-      action = e.target.textContent;
-    }
-
-    if (current.textContent == "") return;
-
-    if (previous.textContent == "") {
-      prevValue = parseFloat(current.textContent);
-      action = e.target.textContent;
-      previous.textContent = `${current.textContent} ${e.target.textContent}`;
-    } else {
-      prevValue = parseFloat(previous.textContent.slice(0, -1));
-      previous.textContent = `${operation(prevValue, action, currentValue)} ${
-        e.target.textContent
-      }`;
-      action = e.target.textContent;
-    }
-    current.textContent = "";
+    handleOperator(e, "textContext");
   });
 });
 
-equalSign.addEventListener("click", (e) => {
-  if (previous.textContent == "" || current.textContent == "") return;
-  prevValue = parseFloat(previous.textContent.slice(0, -1));
-  currentValue = parseFloat(current.textContent);
-  previous.textContent = "";
-  current.textContent = `${operation(prevValue, action, currentValue)}`;
+equalSign.addEventListener("click", () => {
+  handleEqual();
 });
 
 backspace.addEventListener("click", (e) => {
@@ -81,47 +46,22 @@ plusminus.addEventListener("click", (e) => {
 //keyboard support
 const handleKeyboardInput = (e) => {
   if ((e.key >= 0 && e.key <= 9) || e.key === ".") {
-    if (current.textContent.includes("C")) clearDisplay();
-    if (e.key == "." && current.textContent.includes(".")) return;
-    if (
-      e.key == "0" &&
-      current.textContent.charAt(0) == "0" &&
-      current.textContent.charAt(1) != "."
-    )
-      return;
-    if (current.textContent == "0" && e.key != ".") current.textContent = e.key;
-    else current.textContent += e.key;
-    currentValue = parseFloat(current.textContent);
+    handleButton(e, "key");
   }
+
   if (e.key === "=" || e.key === "Enter") {
-    if (previous.textContent == "" || current.textContent == "") return;
-    prevValue = parseFloat(previous.textContent.slice(0, -1));
-    currentValue = parseFloat(current.textContent);
-    previous.textContent = "";
-    current.textContent = `${operation(prevValue, action, currentValue)}`;
+    handleEqual();
   }
+
   if (e.key === "Backspace") deleteOne();
+
   if (e.key === "Escape") clearDisplay();
+
   if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
-    if (current.textContent == "" && previous.textContent != "") {
-      previous.textContent = `${previous.textContent.slice(0, -1)} ${e.key}`;
-      action = e.key;
-    }
-    if (current.textContent == "") return;
-    if (previous.textContent == "") {
-      prevValue = parseFloat(current.textContent);
-      action = e.key;
-      previous.textContent = `${current.textContent} ${e.key}`;
-    } else {
-      prevValue = parseFloat(previous.textContent.slice(0, -1));
-      previous.textContent = `${operation(prevValue, action, currentValue)} ${
-        e.key
-      }`;
-      action = e.key;
-    }
-    current.textContent = "";
+    handleOperator(e, "key");
   }
 };
+
 window.addEventListener("keydown", handleKeyboardInput);
 
 const operation = (number, action, number2) => {
@@ -150,4 +90,71 @@ const clearDisplay = () => {
 
 const deleteOne = () => {
   current.textContent = current.textContent.slice(0, -1);
+};
+
+const handleButton = (e, propertyName) => {
+  let property;
+
+  if (propertyName === "textContext") {
+    property = e.target.textContent;
+  } else {
+    property = e.key;
+  }
+
+  if (current.textContent.includes("C")) clearDisplay();
+
+  if (property == "." && current.textContent.includes(".")) return;
+
+  if (
+    property == "0" &&
+    current.textContent.charAt(0) == "0" &&
+    current.textContent.charAt(1) != "."
+  )
+    return;
+
+  if (current.textContent == "0" && property != ".")
+    current.textContent = property;
+  else current.textContent += property;
+
+  currentValue = parseFloat(current.textContent);
+};
+
+const handleOperator = (e, propertyName) => {
+  let property;
+  if (propertyName === "textContext") {
+    property = e.target.textContent;
+  } else {
+    property = e.key;
+  }
+
+  if (current.textContent == "" && previous.textContent != "") {
+    previous.textContent = `${previous.textContent.slice(0, -1)} ${property}`;
+    action = property;
+  }
+
+  if (current.textContent == "") return;
+
+  if (previous.textContent == "") {
+    prevValue = parseFloat(current.textContent);
+    action = property;
+    previous.textContent = `${current.textContent} ${property}`;
+  } else {
+    prevValue = parseFloat(previous.textContent.slice(0, -1));
+    previous.textContent = `${operation(
+      prevValue,
+      action,
+      currentValue
+    )} ${property}`;
+    action = e.target.textContent;
+  }
+
+  current.textContent = "";
+};
+
+const handleEqual = () => {
+  if (previous.textContent == "" || current.textContent == "") return;
+  prevValue = parseFloat(previous.textContent.slice(0, -1));
+  currentValue = parseFloat(current.textContent);
+  previous.textContent = "";
+  current.textContent = `${operation(prevValue, action, currentValue)}`;
 };
