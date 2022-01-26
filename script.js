@@ -48,7 +48,7 @@ plusminus.addEventListener("click", (e) => {
 //keyboard support
 const handleKeyboardInput = (e) => {
   if ((e.key >= 0 && e.key <= 9) || e.key == ".") {
-    handleButton(e, "key");
+    handleButton(e);
   }
 
   if (e.key == "=" || e.key == "Enter") {
@@ -60,7 +60,7 @@ const handleKeyboardInput = (e) => {
   if (e.key == "Escape") clearDisplay();
 
   if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
-    handleOperator(e, "key");
+    handleOperator(e);
   }
 };
 
