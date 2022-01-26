@@ -129,6 +129,8 @@ const handleOperator = (e, propertyName) => {
     property = e.key;
   }
 
+  if (current.textContent.includes("C")) clearDisplay();
+
   if (current.textContent == "" && previous.textContent != "") {
     previous.textContent = `${previous.textContent.slice(0, -1)} ${property}`;
     action = property;
