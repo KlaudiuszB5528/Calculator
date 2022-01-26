@@ -28,9 +28,10 @@ equalSign.addEventListener("click", () => {
 });
 
 backspace.addEventListener("click", (e) => {
-  deleteOne();
-  if (current.textContent.length == 0) return;
-  currentValue = parseFloat(current.textContent);
+  if (current.textContent.length) {
+    deleteOne();
+    currentValue = parseFloat(current.textContent);
+  }
 });
 
 clear.addEventListener("click", () => {
@@ -38,26 +39,27 @@ clear.addEventListener("click", () => {
 });
 
 plusminus.addEventListener("click", (e) => {
-  if (current.textContent == "") return;
-  current.textContent = -current.textContent;
-  currentValue = parseFloat(current.textContent);
+  if (current.textContent.length) {
+    current.textContent = -current.textContent;
+    currentValue = parseFloat(current.textContent);
+  }
 });
 
 //keyboard support
 const handleKeyboardInput = (e) => {
-  if ((e.key >= 0 && e.key <= 9) || e.key === ".") {
+  if ((e.key >= 0 && e.key <= 9) || e.key == ".") {
     handleButton(e, "key");
   }
 
-  if (e.key === "=" || e.key === "Enter") {
+  if (e.key == "=" || e.key == "Enter") {
     handleEqual();
   }
 
-  if (e.key === "Backspace") deleteOne();
+  if (e.key == "Backspace") deleteOne();
 
-  if (e.key === "Escape") clearDisplay();
+  if (e.key == "Escape") clearDisplay();
 
-  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+  if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
     handleOperator(e, "key");
   }
 };
@@ -95,7 +97,7 @@ const deleteOne = () => {
 const handleButton = (e, propertyName) => {
   let property;
 
-  if (propertyName === "textContext") {
+  if (propertyName == "textContext") {
     property = e.target.textContent;
   } else {
     property = e.key;
@@ -121,7 +123,7 @@ const handleButton = (e, propertyName) => {
 
 const handleOperator = (e, propertyName) => {
   let property;
-  if (propertyName === "textContext") {
+  if (propertyName == "textContext") {
     property = e.target.textContent;
   } else {
     property = e.key;
