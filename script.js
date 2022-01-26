@@ -82,18 +82,6 @@ const operation = (number, action, number2) => {
   }
 };
 
-const clearDisplay = () => {
-  current.textContent = "";
-  previous.textContent = "";
-  currentValue = "";
-  prevValue = "";
-  action = undefined;
-};
-
-const deleteOne = () => {
-  current.textContent = current.textContent.slice(0, -1);
-};
-
 const handleButton = (e, propertyName) => {
   let property;
 
@@ -161,4 +149,16 @@ const handleEqual = () => {
   currentValue = parseFloat(current.textContent);
   previous.textContent = "";
   current.textContent = `${operation(prevValue, action, currentValue)}`;
+};
+
+const clearDisplay = () => {
+  current.textContent = "";
+  previous.textContent = "";
+  currentValue = "";
+  prevValue = "";
+  action = undefined;
+};
+
+const deleteOne = () => {
+  current.textContent = current.textContent.slice(0, -1);
 };
