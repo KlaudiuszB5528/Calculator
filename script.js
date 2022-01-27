@@ -39,7 +39,7 @@ clear.addEventListener("click", () => {
 });
 
 plusminus.addEventListener("click", (e) => {
-  if (current.textContent.length) {
+  if (!isNaN(parseFloat(current.textContent)) {
     current.textContent = -current.textContent;
     currentValue = parseFloat(current.textContent);
   }
@@ -145,8 +145,8 @@ const handleOperator = (e, propertyName) => {
 
 const handleEqual = () => {
   if (
-    isNaN(parseFloat(current.textContent)) &&
-    isNaN(parseFloat(current.previousContent))
+    !isNaN(parseFloat(current.textContent)) &&
+    !isNaN(parseFloat(current.previousContent))
   ) {
     prevValue = parseFloat(previous.textContent.slice(0, -1));
     currentValue = parseFloat(current.textContent);
