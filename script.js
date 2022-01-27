@@ -146,7 +146,7 @@ const handleOperator = (e, propertyName) => {
 const handleEqual = () => {
   if (
     !isNaN(parseFloat(current.textContent)) &&
-    !isNaN(parseFloat(current.previousContent))
+    previous.textContent.length
   ) {
     prevValue = parseFloat(previous.textContent.slice(0, -1));
     currentValue = parseFloat(current.textContent);
