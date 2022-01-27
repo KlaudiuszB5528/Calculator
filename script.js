@@ -94,7 +94,9 @@ const handleButton = (e, propertyName) => {
   if (current.textContent.includes("C")) clearDisplay();
 
   if (property == "." && current.textContent.includes(".")) return;
-
+  
+  if (property == "." && current.textContent == "") current.textContent = "0.";
+  
   if (
     property == "0" &&
     current.textContent.charAt(0) == "0" &&
