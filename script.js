@@ -124,7 +124,7 @@ const handleOperator = (e, propertyName) => {
     action = property;
   }
 
-  if (current.textContent == "" || current.textContent == "-") return;
+  if (isNaN(parseFloat(current.textContent))) return;
 
   if (previous.textContent == "") {
     prevValue = parseFloat(current.textContent);
@@ -145,9 +145,8 @@ const handleOperator = (e, propertyName) => {
 
 const handleEqual = () => {
   if (
-    previous.textContent.length &&
-    current.textContent.length &&
-    current.textContent != "-"
+    isNaN(parseFloat(current.textContent)) &&
+    isNaN(parseFloat(current.previousContent))
   ) {
     prevValue = parseFloat(previous.textContent.slice(0, -1));
     currentValue = parseFloat(current.textContent);
