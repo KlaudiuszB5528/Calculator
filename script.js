@@ -95,7 +95,7 @@ const handleButton = (e, propertyName) => {
 
   if (property == "." && current.textContent.includes(".")) return;
   
-  if (property == "." && current.textContent == "") current.textContent = "0.";
+  if (property == "." && current.textContent == "") current.textContent = "0";
   
   if (
     property == "0" &&
