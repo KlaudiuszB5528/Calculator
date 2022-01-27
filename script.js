@@ -39,7 +39,7 @@ clear.addEventListener("click", () => {
 });
 
 plusminus.addEventListener("click", (e) => {
-  if (!isNaN(parseFloat(current.textContent)) {
+  if (!isNaN(parseFloat(current.textContent))) {
     current.textContent = -current.textContent;
     currentValue = parseFloat(current.textContent);
   }
