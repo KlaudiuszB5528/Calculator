@@ -133,7 +133,7 @@ const handleOperator = (e, propertyName) => {
   if (previous.textContent == "") {
     prevValue = parseFloat(current.textContent);
     action = property;
-    previous.textContent = `${current.textContent} ${property}`;
+    previous.textContent = `${prevValue} ${property}`;
   } else {
     prevValue = parseFloat(previous.textContent.slice(0, -1));
     previous.textContent = `${operation(
