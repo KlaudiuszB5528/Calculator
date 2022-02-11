@@ -130,7 +130,7 @@ const handleOperator = (e, propertyName) => {
 
   if (isNaN(parseFloat(current.textContent))) return;
 
-  if (previous.textContent == "") {
+  if (previous.textContent == "" && !current.textContent.includes("C")) {
     prevValue = parseFloat(current.textContent);
     action = property;
     previous.textContent = `${prevValue} ${property}`;
