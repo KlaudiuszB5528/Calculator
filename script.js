@@ -143,7 +143,7 @@ const handleOperator = (e, propertyName) => {
       currentValue
     )} ${property}`;
     action = e.target.textContent;}
-  else return;
+  else clearDisplay();
   }
 
   current.textContent = "";
