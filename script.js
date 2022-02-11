@@ -135,7 +135,7 @@ const handleOperator = (e, propertyName) => {
     action = property;
     previous.textContent = `${prevValue} ${property}`;
   } else {
-    if(isNaN(previous.textContent.slice(0,-1))){
+    if(!isNaN(parseFloat(previous.textContent.slice(0, -1)))){
     prevValue = parseFloat(previous.textContent.slice(0, -1));
     previous.textContent = `${operation(
       prevValue,
