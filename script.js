@@ -121,7 +121,7 @@ const handleOperator = (e, propertyName) => {
     property = e.key;
   }
 
-  if (current.textContent.includes("C") || previous.textContent.includes("C")) clearDisplay();
+  if (current.textContent.includes("C")) clearDisplay();
 
   if (current.textContent == "" && previous.textContent != "") {
     previous.textContent = `${previous.textContent.slice(0, -1)} ${property}`;
@@ -135,7 +135,7 @@ const handleOperator = (e, propertyName) => {
     action = property;
     previous.textContent = `${prevValue} ${property}`;
   } else {
-    if(isNaN(parseFloat(previous.textContent.slice(0, -1)))){
+    if(isNaN(previous.textContent.slice(0,-1))){
     prevValue = parseFloat(previous.textContent.slice(0, -1));
     previous.textContent = `${operation(
       prevValue,
